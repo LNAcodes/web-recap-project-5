@@ -5,13 +5,12 @@ import Head from "next/head";
 
 export default function Movies() {
   return (
-    <>
+    <main>
       <Head>
-        <title>Galley with List of Artworks</title>
+        <title>Art Gallery</title>
       </Head>
-      <h1>Gallery Page</h1>
-      <h2>ListOfArtPieces</h2>
+      <h1>Art Gallery</h1>
       <ListOfArtPieces />
-    </>
+    </main>
   );
 }

@@ -3,6 +3,7 @@
 import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
+
   *,
   *::before,
   *::after {
@@ -10,7 +11,19 @@ export default createGlobalStyle`
   }
 
   body {
-    margin: 0;
-    font-family: system-ui;
-  }
+  margin: 0;
+  font-family: system-ui;
+  background: #fafafa;
+  color: #111;
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+}
+h1, h2 {
+    margin-bottom: 20px;
+}
+
 `;

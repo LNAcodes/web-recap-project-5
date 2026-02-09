@@ -1,29 +1,34 @@
 // components/ListOfArtPieces/ListOfArtPieces.js
 
 import useSWR from "swr";
-import Link from "next/link";
-import Image from "next/image";
 import styled from "styled-components";
+import ArtPieceCard from "../ArtPieceCard/ArtPieceCard";
 
-const ListItem = styled.li`
-  list-style: none;
-  border-bottom: 1px solid #ccc;
-`;
-
+/* Styling */
 const List = styled.ul`
+  list-style: none;
   padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+`;
+const ListItem = styled.li`
   margin: 0;
 `;
 
+/* API Fetch Funktion */
 async function fetcher(url) {
   const response = await fetch(url);
   if (!response.ok) {
-    throw new Error("Fehler beim Laden der Gallery aus der API");
+    // Fhlermeldung
+    throw new Error("Error loading data from the API.");
   }
   return response.json();
 }
 
 export default function ListOfArtPieces() {
+  /* Calling der API Fetch Funktion per SWR URL übergabe */
   const {
     data: artPieces = [],
     isLoading,
@@ -33,28 +38,21 @@ export default function ListOfArtPieces() {
   if (isLoading) return <h1>Loading...</h1>;
   if (error) return <h1>{error.message}</h1>;
 
+  /* Bildgröße festlegen      */
+  const imageWidth = 150;
+  const imageHeight = 200;
+
   return (
     <>
       <List>
         {artPieces.map((artPiece) => (
-          <ListItem key={artPiece.slug} className="listItem">
-            <p>Artist: {artPiece.artist}</p>
-            <p>Name: {artPiece.name}</p>
-            <Link href={`/gallery/${artPiece.slug}`}>
-              <Image
-                src={artPiece.imageSource}
-                width={artPiece.dimensions.width}
-                height={artPiece.dimensions.height}
-                alt={artPiece.name}
-                style={{
-                  width: artPiece.dimensions.width / 10,
-                  height: "auto",
-                }}
-              />
-            </Link>
-            <p>Year: {artPiece.year}</p>
-            <p>Genre: {artPiece.genre}</p>
-            <p>Colors: {artPiece.colors.join(", ")}</p>
+          <ListItem key={artPiece.slug}>
+            <ArtPieceCard
+              artPiece={artPiece}
+              imageWidth={imageWidth}
+              imageHeight={imageHeight}
+              href={`/gallery/${artPiece.slug}`}
+            />
           </ListItem>
         ))}
       </List>
