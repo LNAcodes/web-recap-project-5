@@ -2,7 +2,9 @@
 
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import Image from "next/image";
+import Head from "next/head";
+import Link from "next/link";
+import ArtPieceCard from "@/components/ArtPieceCard/ArtPieceCard";
 
 async function fetcher(url) {
   const response = await fetch(url);
@@ -31,28 +33,25 @@ export default function ArtPieceDetailPage() {
 
   if (!artPiece) return <h1>Artwork not found</h1>;
 
-  const targetWidth = 400;
-  const targetHeight = Math.round(
-    (artPiece.dimensions.height / artPiece.dimensions.width) * targetWidth
-  );
+  /* Bildgröße festlegen      */
+  const imageWidth = 300;
+  const imageHeight = 400;
 
   return (
-    <>
-      <h1>{artPiece.name}</h1>
-      <p>Artist: {artPiece.artist}</p>
-      <p>Year: {artPiece.year}</p>
-      <p>Genre: {artPiece.genre}</p>
-
-      <Image
-        src={artPiece.imageSource}
-        width={artPiece.dimensions.width}
-        height={artPiece.dimensions.height}
-        alt={artPiece.name}
-        style={{
-          width: artPiece.dimensions.width / 5,
-          height: "auto",
-        }}
+    <main>
+      <Head>
+        <title>
+          {artPiece.artist} - {artPiece.name}
+        </title>
+      </Head>
+      <Link className="back-link" href="/gallery/">
+        Back to Gallery
+      </Link>
+      <ArtPieceCard
+        artPiece={artPiece}
+        imageWidth={imageWidth}
+        imageHeight={imageHeight}
       />
-    </>
+    </main>
   );
 }
