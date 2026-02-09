@@ -5,25 +5,30 @@ import Link from "next/link";
 import Image from "next/image";
 import styled from "styled-components";
 
-const ListItem = styled.li`
-  list-style: none;
-  border-bottom: 1px solid #ccc;
-`;
-
+/* Styling List                 */
 const List = styled.ul`
   padding: 0;
   margin: 0;
 `;
 
+/* Styling ListItem             */
+const ListItem = styled.li`
+  list-style: none;
+  border-bottom: 1px solid #ccc;
+`;
+
+/* API Fetch Funktion              */
 async function fetcher(url) {
   const response = await fetch(url);
   if (!response.ok) {
-    throw new Error("Fehler beim Laden der Gallery aus der API");
+    // Fhlermeldung
+    throw new Error("Error loading data from the API.");
   }
   return response.json();
 }
 
 export default function ListOfArtPieces() {
+  /* Calling der API Fetch Funktion per SWR URL übergabe      */
   const {
     data: artPieces = [],
     isLoading,
@@ -32,6 +37,7 @@ export default function ListOfArtPieces() {
 
   if (isLoading) return <h1>Loading...</h1>;
   if (error) return <h1>{error.message}</h1>;
+  console.log(artPieces[0]);
 
   return (
     <>
