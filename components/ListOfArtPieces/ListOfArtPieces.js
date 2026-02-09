@@ -4,23 +4,20 @@ import useSWR from "swr";
 import styled from "styled-components";
 import ArtPieceCard from "../ArtPieceCard/ArtPieceCard";
 
-/* Styling List                 */
+/* Styling */
 const List = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
-
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 16px;
 `;
-
-/* Styling ListItem             */
 const ListItem = styled.li`
   margin: 0;
 `;
 
-/* API Fetch Funktion              */
+/* API Fetch Funktion */
 async function fetcher(url) {
   const response = await fetch(url);
   if (!response.ok) {
@@ -31,7 +28,7 @@ async function fetcher(url) {
 }
 
 export default function ListOfArtPieces() {
-  /* Calling der API Fetch Funktion per SWR URL übergabe      */
+  /* Calling der API Fetch Funktion per SWR URL übergabe */
   const {
     data: artPieces = [],
     isLoading,

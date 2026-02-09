@@ -6,6 +6,7 @@ import Head from "next/head";
 import Link from "next/link";
 import ArtPieceCard from "@/components/ArtPieceCard/ArtPieceCard";
 
+/* Bilddaten aus der API fetchen */
 async function fetcher(url) {
   const response = await fetch(url);
   if (!response.ok) {
@@ -18,15 +19,18 @@ export default function ArtPieceDetailPage() {
   const router = useRouter();
   const { slug } = router.query;
 
+  /* Calling der API Fetch Funktion per SWR URL übergabe */
   const {
     data: artPieces = [],
     isLoading,
     error,
   } = useSWR("https://example-apis.vercel.app/api/art", fetcher);
 
+  /* Error Handling */
   if (isLoading) return <h1>Loading...</h1>;
   if (error) return <h1>{error.message}</h1>;
 
+  /* Finde einzelnes Bild */
   const artPiece = artPieces.find(
     (singleArtPiece) => singleArtPiece.slug === slug
   );
