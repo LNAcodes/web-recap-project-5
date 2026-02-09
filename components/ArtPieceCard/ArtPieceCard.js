@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import Link from "next/link";
+import Image from "next/image";
 
 /* Styling */
 const Card = styled.article`
@@ -7,6 +9,7 @@ const Card = styled.article`
   overflow: hidden;
   background: white;
   margin-top: 10px;
+  padding: 12px;
   &:hover {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   }
@@ -14,7 +17,9 @@ const Card = styled.article`
 const Title = styled.h2`
   font-size: 1rem;
   line-height: 1.2;
-  padding: 12px 12px 0;
+`;
+const SubTitle = styled.span`
+  color: #828282;
 `;
 const Details = styled.ul`
   list-style: none;
@@ -24,49 +29,46 @@ const Details = styled.ul`
   gap: 4px;
   font-size: 0.9rem;
 `;
-const CardLink = styled.a`
-  display: inline-block;
-`;
-const Image = styled.img`
-  object-fit: cover;
-  border-radius: 10;
-`;
 
 export default function ArtPieceCard({
   artPiece,
   imageWidth,
   imageHeight,
   href,
+  showDetails = true,
 }) {
   return (
     <Card>
-      <Title>{artPiece.name}</Title>
+      <Title>
+        {artPiece.name} <br />
+        <SubTitle>{artPiece.artist}</SubTitle>
+      </Title>
       {/* Zeige href-Link nur wenn 'href' vohanden/übergeben worden ist */}
       {href ? (
-        <CardLink href={href}>
+        <Link href={href}>
           <Image
+            className="card__image"
             src={artPiece.imageSource}
             width={imageWidth}
             height={imageHeight}
             alt={`${artPiece.name} by ${artPiece.artist}`}
-            sizes={`${imageWidth}px`}
           />
-        </CardLink>
+        </Link>
       ) : (
         <Image
           src={artPiece.imageSource}
           width={imageWidth}
           height={imageHeight}
           alt={`${artPiece.name} by ${artPiece.artist}`}
-          sizes={`${imageWidth}px`}
         />
       )}
-      <Details>
-        <li>Artist: {artPiece.artist}</li>
-        <li>Year: {artPiece.year}</li>
-        <li>Genre: {artPiece.genre}</li>
-        <li>Colors: {artPiece.colors.join(", ")}</li>
-      </Details>
+      {showDetails && (
+        <Details>
+          <li>Year: {artPiece.year}</li>
+          <li>Genre: {artPiece.genre}</li>
+          <li>Colors: {artPiece.colors.join(", ")}</li>
+        </Details>
+      )}
     </Card>
   );
 }
