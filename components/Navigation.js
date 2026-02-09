@@ -2,16 +2,16 @@ import Link from "next/link";
 
 export default function Navigation() {
   return (
-    <nav>
-      <ul>
-        <li>
+    <nav className="navigation">
+      <ul className="navigation__list">
+        <li className="navigation__list-item">
           <Link href="/">Spotlight</Link>
         </li>
-        <li>
-          <Link href="/gallery">Art Pieces</Link>
+        <li className="navigation__list-item">
+          <Link href="/gallery/">Art Pieces</Link>
         </li>
-        <li>
-          <Link href="/favorites">Favorites</Link>
+        <li className="navigation__list-item">
+          <Link href="/favorites/">Favorites</Link>
         </li>
       </ul>
     </nav>
