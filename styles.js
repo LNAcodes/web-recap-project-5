@@ -25,5 +25,8 @@ main {
 h1, h2 {
     margin-bottom: 20px;
 }
+img.card__image {
+    object-fit: cover;
+}
 
 `;

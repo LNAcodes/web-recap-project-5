@@ -52,6 +52,7 @@ export default function ListOfArtPieces() {
               imageWidth={imageWidth}
               imageHeight={imageHeight}
               href={`/gallery/${artPiece.slug}`}
+              showDetails={false}
             />
           </ListItem>
         ))}
