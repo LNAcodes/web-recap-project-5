@@ -3,6 +3,7 @@
 import useSWR from "swr";
 import styled from "styled-components";
 import ArtPieceCard from "../ArtPieceCard/ArtPieceCard";
+import FavoriteButton from "../FavoriteButton";
 
 /* Styling */
 const List = styled.ul`

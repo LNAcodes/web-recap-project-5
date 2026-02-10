@@ -1,19 +1,34 @@
 import Link from "next/link";
+import styled from "styled-components";
 
 export default function Navigation() {
   return (
-    <nav className="navigation">
-      <ul className="navigation__list">
-        <li className="navigation__list-item">
-          <Link href="/">Spotlight</Link>
-        </li>
-        <li className="navigation__list-item">
-          <Link href="/gallery/">Art Pieces</Link>
-        </li>
-        <li className="navigation__list-item">
-          <Link href="/favorites/">Favorites</Link>
-        </li>
-      </ul>
-    </nav>
+    <Nav aria-label="Main navigation">
+      <List>
+        <ListItem>
+          <Link href="/" aria-label="Go to Spotlight page">
+            Spotlight
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link href="/gallery/" aria-label="Go to Art Pieces gallery">
+            Art Pieces
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link href="/favorites/" aria-label="Go to Favorites page">
+            Favorites
+          </Link>
+        </ListItem>
+      </List>
+    </Nav>
   );
 }
+
+const Nav = styled.nav``;
+
+const List = styled.ul``;
+
+const ListItem = styled.li``;
+
+const StyledLink = styled(Link)``;
