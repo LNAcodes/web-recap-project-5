@@ -7,6 +7,22 @@ import Link from "next/link";
 import ArtPieceCard from "@/components/ArtPieceCard/ArtPieceCard";
 import CommentForm from "@/components/CommentForm/CommentForm";
 import ListOfComments from "@/components/ListOfComments/ListOfComments";
+import styled from "styled-components";
+
+/* Styling */
+const Card = styled.article`
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  overflow: hidden;
+  background: white;
+  margin-top: 10px;
+  padding: 12px;
+`;
+
+const Title = styled.h2`
+  font-size: 1rem;
+  line-height: 1.2;
+`;
 
 /* Bilddaten aus der API fetchen */
 async function fetcher(url) {
@@ -58,8 +74,13 @@ export default function ArtPieceDetailPage({ handleAddComment, comments }) {
         imageWidth={imageWidth}
         imageHeight={imageHeight}
       />
-      <CommentForm onAddComment={handleAddComment} slug={slug} />
-      <ListOfComments slug={slug} comments={comments} />
+      <Card>
+        <Title>Comments:</Title>
+        <ListOfComments slug={slug} comments={comments} />
+      </Card>
+      <Card>
+        <CommentForm onAddComment={handleAddComment} slug={slug} />
+      </Card>
     </main>
   );
 }

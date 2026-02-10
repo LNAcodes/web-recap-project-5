@@ -1,6 +1,29 @@
 // components/CommentForm/CommentForm.js
 
 import { uid } from "uid";
+import styled from "styled-components";
+
+/* Styling */
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
+const Label = styled.label`
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  padding: 5px;
+`;
+const Input = styled.input`
+  padding: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+`;
+
+// input[type="submit"] {
+//   margin: auto;
+//   width: fit-content;
+// }
 
 export default function CommentForm({ onAddComment, slug }) {
   console.log("slug: ", slug);
@@ -42,19 +65,20 @@ export default function CommentForm({ onAddComment, slug }) {
   }
 
   return (
-    <form data-js="commentForm" onSubmit={handleSubmit}>
-      <label htmlFor="comment">Add a comment</label>
-      <input
+    <Form data-js="commentForm" onSubmit={handleSubmit}>
+      <Label htmlFor="comment">Add a comment:</Label>
+      <Input
         name="comment"
         id="comment"
         type="text"
         defaultValue=""
-        maxLength="50"
+        minLength="3"
+        maxLength="45"
         required
       />
       {/* <input name="slug" id="slug" type="hidden" defaultValue={slug} /> */}
 
       <button type="submit">Send</button>
-    </form>
+    </Form>
   );
 }

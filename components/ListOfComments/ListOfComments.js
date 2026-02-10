@@ -3,13 +3,33 @@
 import styled from "styled-components";
 
 /* Styling */
+const Comment = styled.p`
+  font-size: 1rem;
+  line-height: 1.2;
+  font-weight: 700;
+  padding: 0 5px;
+`;
+
+const Timestamp = styled.p`
+  font-size: 0.9rem;
+  line-height: 1.1;
+  padding: 0 5px;
+`;
+
 const List = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
+  display: grid;
+  gap: 4px;
+  font-size: 0.9rem;
 `;
 const ListItem = styled.li`
+  background: #defafb;
   margin: 0;
+  &:nth-child(odd) {
+    background: #f3f3f3;
+  }
 `;
 
 export default function ListOfComments({ slug, comments }) {
@@ -40,7 +60,8 @@ export default function ListOfComments({ slug, comments }) {
       {hasComments &&
         matchingComments.map((comment) => (
           <ListItem key={comment.id}>
-            {comment.comment} {comment.timestamp}
+            <Comment>"{comment.comment}"</Comment>{" "}
+            <Timestamp>({comment.timestamp})</Timestamp>
           </ListItem>
         ))}
     </List>
