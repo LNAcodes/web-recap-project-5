@@ -15,16 +15,21 @@ const ListItem = styled.li`
 export default function ListOfComments({ slug, comments }) {
   const matchingComments = [];
 
+  // zum Bild gehörende Kommentare im object 'comments' anhand von 'slug' ins array 'matchingComments' speichern.
   for (const comment of comments) {
     if (comment.slug === slug) {
       matchingComments.push(comment);
     }
   }
+
+  // Wenn Kommentare vorhanden sind Flag 'hasComments' auf true setzen
   const hasComments = matchingComments.length > 0;
-  console.log("matchingComments: ", matchingComments);
+
+  // Console.logs
+  console.log("slug: ", slug);
   console.log("comments: ", comments);
   console.log("comments.length: ", comments.length);
-  console.log("slug: ", slug);
+  console.log("matchingComments: ", matchingComments);
 
   return (
     <List>
@@ -34,7 +39,9 @@ export default function ListOfComments({ slug, comments }) {
 
       {hasComments &&
         matchingComments.map((comment) => (
-          <ListItem key={comment.id}>{comment.comment}</ListItem>
+          <ListItem key={comment.id}>
+            {comment.comment} {comment.timestamp}
+          </ListItem>
         ))}
     </List>
   );
