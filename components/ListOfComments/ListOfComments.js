@@ -36,7 +36,7 @@ export default function ListOfComments({ slug, comments }) {
   return (
     <List>
       {matchingComments.map((comment) => (
-        <ListItem key={comment.slug}>{comment.comment}</ListItem>
+        <ListItem key={comment.id}>{comment.comment}</ListItem>
       ))}
     </List>
   );
