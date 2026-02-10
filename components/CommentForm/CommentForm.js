@@ -1,13 +1,20 @@
 // components/CommentForm/CommentForm.js
 
-export default function CommentForm() {
-  // export default function CommentForm({ onAddComment }) {
+import { uid } from "uid";
 
+export default function CommentForm({ onAddComment }) {
   function handleSubmit(event) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
+
+    const newCommentObject = {
+      id: uid(16),
+      comment: data.comment,
+    };
+
+    onAddComment(newCommentObject);
 
     console.log(data.comment);
 
