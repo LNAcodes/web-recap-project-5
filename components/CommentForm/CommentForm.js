@@ -20,11 +20,6 @@ const Input = styled.input`
   width: 100%;
 `;
 
-// input[type="submit"] {
-//   margin: auto;
-//   width: fit-content;
-// }
-
 export default function CommentForm({ onAddComment, slug }) {
   console.log("slug: ", slug);
   function handleSubmit(event) {
@@ -59,7 +54,7 @@ export default function CommentForm({ onAddComment, slug }) {
     // und an die Funktion 'onAddComment" übergeben
     onAddComment(newCommentObject);
 
-    console.log(data.comment);
+    // console.log(data.comment);
 
     event.target.reset(); // formular wieder in den Ausgangszustand zurück setzen
   }
@@ -76,8 +71,6 @@ export default function CommentForm({ onAddComment, slug }) {
         maxLength="45"
         required
       />
-      {/* <input name="slug" id="slug" type="hidden" defaultValue={slug} /> */}
-
       <button type="submit">Send</button>
     </Form>
   );
