@@ -20,24 +20,22 @@ export default function ListOfComments({ slug, comments }) {
       matchingComments.push(comment);
     }
   }
+  const hasComments = matchingComments.length > 0;
   console.log("matchingComments: ", matchingComments);
   console.log("comments: ", comments);
   console.log("comments.length: ", comments.length);
   console.log("slug: ", slug);
 
-  if (matchingComments.length === 0) {
-    return (
-      <List>
-        <ListItem>There are no comments for the image ({slug}) yet.</ListItem>
-      </List>
-    );
-  }
-
   return (
     <List>
-      {matchingComments.map((comment) => (
-        <ListItem key={comment.id}>{comment.comment}</ListItem>
-      ))}
+      {!hasComments && (
+        <ListItem>There are no comments for the image yet.</ListItem>
+      )}
+
+      {hasComments &&
+        matchingComments.map((comment) => (
+          <ListItem key={comment.id}>{comment.comment}</ListItem>
+        ))}
     </List>
   );
 }
