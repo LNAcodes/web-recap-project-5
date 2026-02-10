@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }) {
         pieces={
           pageProps
         } /*hier müssen die Daten aus dem Fetch übergeben werden*/
-      />
+      <Component {...pageProps} />
     </>
   );
 }
