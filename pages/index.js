@@ -13,7 +13,7 @@ export default function HomePage() {
     isLoading,
   } = useSWR("https://example-apis.vercel.app/api/art", fetcher);
   if (error) return <p>Error loading artworks</p>;
-  if (isloading || artPieces.length === 0)
+  if (isLoading || artPieces.length === 0)
     return <p>Loading...Please wait...</p>;
   const spotlightPiece = getRandomElement(artPieces);
   if (!spotlightPiece) {
