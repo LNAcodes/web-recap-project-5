@@ -28,7 +28,11 @@ async function fetcher(url) {
   return response.json();
 }
 
-export default function ListOfArtPieces({ artPiecesInfo, onToggleFavorite }) {
+export default function ListOfArtPieces({
+  artPiecesInfo,
+  onToggleFavorite,
+  pieces,
+}) {
   /* Calling der API Fetch Funktion per SWR URL übergabe */
   const {
     data: artPieces = [],
@@ -43,10 +47,12 @@ export default function ListOfArtPieces({ artPiecesInfo, onToggleFavorite }) {
   const imageWidth = 150;
   const imageHeight = 200;
 
+  const piecesToShow = pieces || artPieces;
+
   return (
     <>
       <List>
-        {artPieces.map((artPiece) => {
+        {piecesToShow.map((artPiece) => {
           const info = artPiecesInfo.find(
             (info) => info.slug === artPiece.slug
           );
