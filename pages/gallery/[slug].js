@@ -1,8 +1,7 @@
 // pages/gallery/[slug].js
 
 import { useRouter } from "next/router";
-import Head from "next/head";
-import Link from "next/link";
+import MetaHead from "@/components/MetaHead/MetaHead";
 import ArtPieceCard from "@/components/ArtPieceCard/ArtPieceCard";
 import CommentForm from "@/components/CommentForm/CommentForm";
 import ListOfComments from "@/components/ListOfComments/ListOfComments";
@@ -15,16 +14,18 @@ const Card = styled.article`
   overflow: hidden;
   background: white;
   margin-top: 10px;
-  padding: 12px;
+  padding: 24px;
 `;
-
 const Title = styled.h2`
+  color: #333;
   font-size: 1rem;
   line-height: 1.2;
 `;
 
 export default function ArtPieceDetailPage({
   artPieces,
+  artPiecesInfo,
+  onToggleFavorite,
   handleAddComment,
   comments,
 }) {
@@ -42,28 +43,38 @@ export default function ArtPieceDetailPage({
   const imageWidth = 300;
   const imageHeight = 400;
 
+  const info = artPiecesInfo.find((info) => info.slug === slug);
+  const isFavorite = info ? info.isFavorite : false;
+
+  let hasComments = false;
+  if (comments.filter((comment) => comment.slug === slug).length != 0) {
+    hasComments = true;
+  }
+
   return (
-    <main>
-      <Head>
-        <title>
-          {artPiece.artist} - {artPiece.name}
-        </title>
-      </Head>
-      <Link className="back-link" href="/gallery/">
-        Back to Gallery
-      </Link>
-      <ArtPieceCard
-        artPiece={artPiece}
-        imageWidth={imageWidth}
-        imageHeight={imageHeight}
+    <>
+      <MetaHead
+        title="ArtPiece Title | Art Gallery"
+        description="ArtPiece Title from Artist"
       />
-      <Card>
-        <Title>Comments:</Title>
-        <ListOfComments slug={slug} comments={comments} />
-      </Card>
-      <Card>
-        <CommentForm onAddComment={handleAddComment} slug={slug} />
-      </Card>
-    </main>
+      <main>
+        <ArtPieceCard
+          artPiece={artPiece}
+          imageWidth={imageWidth}
+          imageHeight={imageHeight}
+          showDetails={true}
+          slug={slug}
+          isFavorite={isFavorite}
+          onToggleFavorite={onToggleFavorite}
+        />
+        <Card>
+          <Title>{hasComments ? "Comments:" : "No comments yet."}</Title>
+          <ListOfComments slug={slug} comments={comments} />
+        </Card>
+        <Card>
+          <CommentForm onAddComment={handleAddComment} slug={slug} />
+        </Card>
+      </main>
+    </>
   );
 }

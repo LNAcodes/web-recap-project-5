@@ -5,22 +5,26 @@ import styled from "styled-components";
 
 /* Styling */
 const Form = styled.form`
+  color: #333;
   display: flex;
   flex-direction: column;
 `;
 const Label = styled.label`
+  color: #333;
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.2;
   padding: 5px;
 `;
 const Hint = styled.p`
+  color: #333;
   font-size: 0.7rem;
   line-height: 1;
   padding: 0 5px;
   margin-bottom: 10px;
 `;
 const Input = styled.input`
+  color: #333;
   padding: 05px;
   width: 100%;
 `;
@@ -30,7 +34,6 @@ const Button = styled.button`
 `;
 
 export default function CommentForm({ onAddComment, slug }) {
-  console.log("slug: ", slug);
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -60,10 +63,8 @@ export default function CommentForm({ onAddComment, slug }) {
       comment: data.comment,
       timestamp: timeStamp,
     };
-    // und an die Funktion 'onAddComment" übergeben
+    // und an 'onAddComment" übergeben
     onAddComment(newCommentObject);
-
-    // console.log(data.comment);
 
     event.target.reset(); // formular wieder in den Ausgangszustand zurück setzen
   }

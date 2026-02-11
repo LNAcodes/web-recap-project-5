@@ -2,6 +2,8 @@
 
 import useSWR from "swr";
 import useLocalStorageState from "use-local-storage-state";
+import MetaHead from "@/components/MetaHead/MetaHead";
+import Header from "../components/Header/Header";
 import GlobalStyle from "../styles";
 import Navigation from "./navigation";
 
@@ -23,7 +25,7 @@ export default function App({ Component, pageProps }) {
     error,
   } = useSWR("https://example-apis.vercel.app/api/art", fetcher);
 
-  // STATE (FÜR COMMENTS) MIT LOCAL STORAGE (key = comments, opions = defaultValue)
+  // STATE (FÜR COMMENTS) MIT LOCAL STORAGE
   const [comments, setComments] = useLocalStorageState("comments", {
     defaultValue: [],
   });
@@ -55,6 +57,8 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
+      <MetaHead />
+      <Header />
       <Component
         {...pageProps}
         artPieces={artPieces}

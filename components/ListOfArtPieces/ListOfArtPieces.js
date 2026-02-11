@@ -2,7 +2,6 @@
 
 import styled from "styled-components";
 import ArtPieceCard from "../ArtPieceCard/ArtPieceCard";
-import FavoriteButton from "../FavoriteButton";
 
 /* Styling */
 const List = styled.ul`
@@ -29,11 +28,15 @@ export default function ListOfArtPieces({
   return (
     <>
       <List>
+        {/* mappe im übergebenen array 'pieces' über alle einträge 'artPiece'  */}
         {pieces.map((artPiece) => {
           const info = artPiecesInfo.find(
+            // suche im aktuellen 'artPiece' nach einem Eintrag mit gleichen 'slug' und gebe ihn als objekt zurück
+            // wenn kein übereinstimmender Eintrag gefunden wird, wird "undefined" zurückgegeben
             (info) => info.slug === artPiece.slug
           );
           let isFavorite = false;
+          // wenn info true (nicht 'undefined')
           if (info) {
             isFavorite = info.isFavorite;
           }
@@ -47,8 +50,6 @@ export default function ListOfArtPieces({
                   imageHeight={imageHeight}
                   href={`/gallery/${artPiece.slug}`}
                   showDetails={false}
-                />
-                <FavoriteButton
                   slug={artPiece.slug}
                   isFavorite={isFavorite}
                   onToggleFavorite={onToggleFavorite}

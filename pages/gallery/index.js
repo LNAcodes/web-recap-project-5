@@ -1,7 +1,7 @@
 // pages/gallery/index.js
 
 import ListOfArtPieces from "@/components/ListOfArtPieces/ListOfArtPieces.js";
-import Head from "next/head";
+import MetaHead from "@/components/MetaHead/MetaHead";
 
 export default function ArtGallery({
   artPieces,
@@ -9,16 +9,19 @@ export default function ArtGallery({
   onToggleFavorite,
 }) {
   return (
-    <main>
-      <Head>
-        <title>Art Gallery</title>
-      </Head>
-      <h1>Art Gallery</h1>
-      <ListOfArtPieces
-        pieces={artPieces}
-        artPiecesInfo={artPiecesInfo}
-        onToggleFavorite={onToggleFavorite}
+    <>
+      <MetaHead
+        title="Art Pieces | Art Gallery"
+        description="List of all Art Pieces"
       />
-    </main>
+      <main>
+        <h1>Art Pieces</h1>
+        <ListOfArtPieces
+          pieces={artPieces}
+          artPiecesInfo={artPiecesInfo}
+          onToggleFavorite={onToggleFavorite}
+        />
+      </main>
+    </>
   );
 }

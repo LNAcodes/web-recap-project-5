@@ -8,13 +8,11 @@ const Comment = styled.p`
   font-weight: 700;
   padding: 0 5px;
 `;
-
 const Timestamp = styled.p`
   font-size: 0.9rem;
   line-height: 1.1;
   padding: 0 5px;
 `;
-
 const List = styled.ul`
   list-style: none;
   padding: 0;
@@ -31,13 +29,7 @@ const ListItem = styled.li`
   }
 `;
 
-export default function ListOfComments({
-  artPiece,
-  isFavorite,
-  slug,
-  comments,
-  onToggleFavorite,
-}) {
+export default function ListOfComments({ slug, comments }) {
   // neues Array 'matchingComments' anlegen
   // Mit 'filter' durch alle Kommentare gehen und wenn der 'slug' übereinstimmt ins Array reinpushen
   const matchingComments = comments.filter((comment) => comment.slug === slug);
