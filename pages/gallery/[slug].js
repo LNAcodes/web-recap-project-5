@@ -1,7 +1,6 @@
 // pages/gallery/[slug].js
 
 import { useRouter } from "next/router";
-// import useSWR from "swr";
 import Head from "next/head";
 import Link from "next/link";
 import ArtPieceCard from "@/components/ArtPieceCard/ArtPieceCard";

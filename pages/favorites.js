@@ -13,6 +13,10 @@ export default function FavoritesPage({
     return false;
   });
 
+  if (favoritedPieces.length === 0) {
+    return <p>There are no favorites yet.</p>;
+  }
+
   return (
     <>
       <h1>My Favorites</h1>

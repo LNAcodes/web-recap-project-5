@@ -1,5 +1,4 @@
 // components/ListOfComments/ListOfComments.js
-
 import styled from "styled-components";
 
 /* Styling */
@@ -32,33 +31,25 @@ const ListItem = styled.li`
   }
 `;
 
-export default function ListOfComments({ slug, comments }) {
+export default function ListOfComments({
+  artPiece,
+  isFavorite,
+  slug,
+  comments,
+  onToggleFavorite,
+}) {
   // neues Array 'matchingComments' anlegen
   // Mit 'filter' durch alle Kommentare gehen und wenn der 'slug' übereinstimmt ins Array reinpushen
   const matchingComments = comments.filter((comment) => comment.slug === slug);
 
-  // Wenn Kommentare vorhanden sind Flag 'hasComments' auf true setzen
-  const hasComments = matchingComments.length > 0;
-
-  // Console.logs
-  console.log("slug: ", slug);
-  console.log("comments: ", comments);
-  console.log("comments.length: ", comments.length);
-  console.log("matchingComments: ", matchingComments);
-
   return (
     <List>
-      {!hasComments && (
-        <ListItem>There are no comments for the image yet.</ListItem>
-      )}
-
-      {hasComments &&
-        matchingComments.map((comment) => (
-          <ListItem key={comment.id}>
-            <Comment>{comment.comment}</Comment>{" "}
-            <Timestamp>({comment.timestamp})</Timestamp>
-          </ListItem>
-        ))}
+      {matchingComments.map((comment) => (
+        <ListItem key={comment.id}>
+          <Comment>{comment.comment}</Comment>
+          <Timestamp>({comment.timestamp})</Timestamp>
+        </ListItem>
+      ))}
     </List>
   );
 }
