@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
+import FavoriteButton from "../FavoriteButton";
 
 const StyledSection = styled.section`
   display: flex;
@@ -18,7 +19,22 @@ const StyledImage = styled(Image)`
   width: auto;
 `;
 
-export default function Spotlight({ imageSource, artist, width, height }) {
+export default function Spotlight({
+  imageSource,
+  artist,
+  width,
+  height,
+  artPiecesInfo,
+  onToggleFavorite,
+  slug,
+}) {
+  const spotlightInfo = artPiecesInfo.find((info) => info.slug === slug);
+
+  let isFavorite = false;
+  if (spotlightInfo) {
+    isFavorite = spotlightInfo.isFavorite;
+  }
+
   return (
     <StyledSection>
       <h2>{artist}</h2>
@@ -28,6 +44,11 @@ export default function Spotlight({ imageSource, artist, width, height }) {
         alt={`spotlight: ${artist}`}
         width={width}
         height={height}
+      />
+      <FavoriteButton
+        slug={slug}
+        isFavorite={isFavorite}
+        onToggleFavorite={onToggleFavorite}
       />
     </StyledSection>
   );

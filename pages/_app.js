@@ -1,6 +1,7 @@
 // pages/_app.js
 
 import useLocalStorageState from "use-local-storage-state";
+import { useState } from "react";
 import GlobalStyle from "../styles";
 import Navigation from "../components/Navigation";
 
@@ -19,6 +20,17 @@ export default function App({ Component, pageProps }) {
     setComments(updatedComments); // State setzen
     console.log(updatedComments); // Aktuellen State in der Conole ausgeben
   };
+  const [artPiecesInfo, setArtPiecesInfo] = useState([]);
+  function handleToggleFavorite(slug) {
+    const isAlreadyFavorite = artPiecesInfo.find((info) => info.slug === slug);
+    if (isAlreadyFavorite) {
+      const updatedInfo = artPiecesInfo.filter((info) => info.slug !== slug);
+      setArtPiecesInfo(updatedInfo);
+    } else {
+      const newFavorite = { slug: slug, isFavorite: true };
+      setArtPiecesInfo([newFavorite, ...artPiecesInfo]);
+    }
+  }
 
   return (
     <>
@@ -27,6 +39,8 @@ export default function App({ Component, pageProps }) {
         {...pageProps}
         handleAddComment={handleAddComment}
         comments={comments}
+        artPiecesInfo={artPiecesInfo}
+        onToggleFavorite={handleToggleFavorite}
       />
       <Navigation />
     </>
