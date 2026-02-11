@@ -11,6 +11,7 @@ export default function App({ Component, pageProps }) {
   // STATE (FÜR COMMENTS) MIT LOCAL STORAGE (key = comments, opions = defaultValue)
   const [comments, setComments] = useLocalStorageState("comments", {
     // initial comments aus lib laden (wenn noch keine colors im local storage vorhanden )
+
     defaultValue: initialComments,
   });
 
