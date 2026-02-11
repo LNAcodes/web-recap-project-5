@@ -10,6 +10,7 @@ const Card = styled.article`
   background: white;
   margin-top: 10px;
   padding: 12px;
+
   &:hover {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   }
@@ -28,6 +29,7 @@ const Details = styled.ul`
   display: grid;
   gap: 4px;
   font-size: 0.9rem;
+  position: relative;
 `;
 
 export default function ArtPieceCard({

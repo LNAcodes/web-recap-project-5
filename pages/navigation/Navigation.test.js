@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Navigation from "./Navigation";
+import Navigation from "../pages/navigation";
 describe("test for exists navigation links and goals", () => {
   test("renders navigation links 'Spotlight', 'Art Pieces' and 'Favorites'", () => {
     render(<Navigation />);

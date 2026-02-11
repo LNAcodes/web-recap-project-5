@@ -3,7 +3,7 @@
 import useSWR from "swr";
 import useLocalStorageState from "use-local-storage-state";
 import GlobalStyle from "../styles";
-import Navigation from "../components/Navigation";
+import Navigation from "./navigation";
 
 /* API Fetch Funktion */
 async function fetcher(url) {
