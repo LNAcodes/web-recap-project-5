@@ -1,6 +1,5 @@
 // components/ListOfArtPieces/ListOfArtPieces.js
 
-// import useSWR from "swr";
 import styled from "styled-components";
 import ArtPieceCard from "../ArtPieceCard/ArtPieceCard";
 import FavoriteButton from "../FavoriteButton";
@@ -27,16 +26,9 @@ export default function ListOfArtPieces({
   const imageWidth = 150;
   const imageHeight = 200;
 
-  let hasFavorites = false;
-  if (artPiecesInfo.length > 0) {
-    hasFavorites = true;
-  }
-  console.log("artPiecesInfo: ", artPiecesInfo);
-
   return (
     <>
       <List>
-        {!hasFavorites && <ListItem>There are no favorites yet.</ListItem>}
         {pieces.map((artPiece) => {
           const info = artPiecesInfo.find(
             (info) => info.slug === artPiece.slug
