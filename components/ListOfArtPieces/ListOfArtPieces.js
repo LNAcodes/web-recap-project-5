@@ -27,9 +27,16 @@ export default function ListOfArtPieces({
   const imageWidth = 150;
   const imageHeight = 200;
 
+  let hasFavorites = false;
+  if (artPiecesInfo.length > 0) {
+    hasFavorites = true;
+  }
+  console.log("artPiecesInfo: ", artPiecesInfo);
+
   return (
     <>
       <List>
+        {!hasFavorites && <ListItem>There are no favorites yet.</ListItem>}
         {pieces.map((artPiece) => {
           const info = artPiecesInfo.find(
             (info) => info.slug === artPiece.slug
@@ -38,21 +45,24 @@ export default function ListOfArtPieces({
           if (info) {
             isFavorite = info.isFavorite;
           }
+
           return (
-            <ListItem key={artPiece.slug}>
-              <ArtPieceCard
-                artPiece={artPiece}
-                imageWidth={imageWidth}
-                imageHeight={imageHeight}
-                href={`/gallery/${artPiece.slug}`}
-                showDetails={false}
-              />
-              <FavoriteButton
-                slug={artPiece.slug}
-                isFavorite={isFavorite}
-                onToggleFavorite={onToggleFavorite}
-              />
-            </ListItem>
+            <>
+              <ListItem key={artPiece.slug}>
+                <ArtPieceCard
+                  artPiece={artPiece}
+                  imageWidth={imageWidth}
+                  imageHeight={imageHeight}
+                  href={`/gallery/${artPiece.slug}`}
+                  showDetails={false}
+                />
+                <FavoriteButton
+                  slug={artPiece.slug}
+                  isFavorite={isFavorite}
+                  onToggleFavorite={onToggleFavorite}
+                />
+              </ListItem>
+            </>
           );
         })}
       </List>

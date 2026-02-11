@@ -1,16 +1,4 @@
-import useSWR from "swr";
 import ListOfArtPieces from "@/components/ListOfArtPieces/ListOfArtPieces";
-import Head from "next/head";
-import styled from "styled-components";
-
-async function fetcher(url) {
-  const response = await fetch(url);
-  if (!response.ok) {
-    // Fhlermeldung
-    throw new Error("Error loading data from the API.");
-  }
-  return response.json();
-}
 
 export default function FavoritesPage({
   artPieces,
@@ -36,6 +24,3 @@ export default function FavoritesPage({
     </>
   );
 }
-
-const FavoritesContainer = styled.main``;
-const Heading = styled.h1``;

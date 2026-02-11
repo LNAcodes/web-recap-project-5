@@ -29,11 +29,10 @@ export default function App({ Component, pageProps }) {
     defaultValue: [],
   });
 
-  // ADD COMMENT
+  // Funktion zum Hinzufügen von Kommentaren
   const handleAddComment = (newComment) => {
     const updatedComments = [newComment, ...comments]; // alte Color Liste kopieren und neue Color hinzufügen
     setComments(updatedComments); // State setzen
-    console.log(updatedComments); // Aktuellen State in der Conole ausgeben
   };
 
   const [artPiecesInfo, setArtPiecesInfo] = useState([]);

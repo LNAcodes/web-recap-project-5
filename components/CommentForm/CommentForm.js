@@ -51,7 +51,7 @@ export default function CommentForm({ onAddComment, slug }) {
     let seconds = dateTime.getSeconds();
     seconds = seconds.toString().padStart(2, "0");
     const timeStamp = `${day}.${month}.${year} ${hours}:${minutes}:${seconds}`;
-    console.log("timestamp: ", timeStamp);
+    console.log("dateTime: ", dateTime);
 
     // Neuen Kommentar als object mit id, slug, comment und timestamp speichern
     const newCommentObject = {
