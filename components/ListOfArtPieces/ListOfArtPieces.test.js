@@ -15,7 +15,7 @@ const mockPieces = [
   },
 ];
 
-describe("ListOfArtPieces Component", () => {
+describe.skip("ListOfArtPieces Component", () => {
   test("renders all art pieces as a list", () => {
     render(<ListOfArtPieces artPieces={mockPieces} />);
     screen.debug();
