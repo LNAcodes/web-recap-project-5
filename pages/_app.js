@@ -1,27 +1,42 @@
 // pages/_app.js
 
+import useSWR from "swr";
 import useLocalStorageState from "use-local-storage-state";
 import { useState } from "react";
 import GlobalStyle from "../styles";
 import Navigation from "../components/Navigation";
 
+/* API Fetch Funktion */
+async function fetcher(url) {
+  const response = await fetch(url);
+  if (!response.ok) {
+    // Fehlermeldung
+    throw new Error("Error loading data from the API.");
+  }
+  return response.json();
+}
+
 export default function App({ Component, pageProps }) {
-  const initialComments = [];
+  /* Calling der API Fetch Funktion per SWR URL übergabe */
+  const {
+    data: artPieces = [],
+    isLoading,
+    error,
+  } = useSWR("https://example-apis.vercel.app/api/art", fetcher);
 
   // STATE (FÜR COMMENTS) MIT LOCAL STORAGE (key = comments, opions = defaultValue)
   const [comments, setComments] = useLocalStorageState("comments", {
-    // initial comments aus lib laden (wenn noch keine colors im local storage vorhanden )
-
-    defaultValue: initialComments,
+    defaultValue: [],
   });
 
-  // ADD COMMENT
+  // Funktion zum Hinzufügen von Kommentaren
   const handleAddComment = (newComment) => {
     const updatedComments = [newComment, ...comments]; // alte Color Liste kopieren und neue Color hinzufügen
     setComments(updatedComments); // State setzen
-    console.log(updatedComments); // Aktuellen State in der Conole ausgeben
   };
+
   const [artPiecesInfo, setArtPiecesInfo] = useState([]);
+
   function handleToggleFavorite(slug) {
     const isAlreadyFavorite = artPiecesInfo.find((info) => info.slug === slug);
     if (isAlreadyFavorite) {
@@ -38,6 +53,9 @@ export default function App({ Component, pageProps }) {
       <GlobalStyle />
       <Component
         {...pageProps}
+        artPieces={artPieces}
+        artPiecesLoading={isLoading}
+        artPiecesError={error}
         handleAddComment={handleAddComment}
         comments={comments}
         artPiecesInfo={artPiecesInfo}
