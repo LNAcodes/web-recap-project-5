@@ -35,7 +35,12 @@ export default function App({ Component, pageProps }) {
     setComments(updatedComments); // State setzen
   };
 
-  const [artPiecesInfo, setArtPiecesInfo] = useState([]);
+  const [artPiecesInfo, setArtPiecesInfo] = useLocalStorageState(
+    "artPiecesInfo",
+    {
+      defaultValue: [],
+    }
+  );
 
   function handleToggleFavorite(slug) {
     const isAlreadyFavorite = artPiecesInfo.find((info) => info.slug === slug);
