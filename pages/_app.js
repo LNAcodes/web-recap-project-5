@@ -2,7 +2,6 @@
 
 import useSWR from "swr";
 import useLocalStorageState from "use-local-storage-state";
-import { useState } from "react";
 import GlobalStyle from "../styles";
 import Navigation from "../components/Navigation";
 
