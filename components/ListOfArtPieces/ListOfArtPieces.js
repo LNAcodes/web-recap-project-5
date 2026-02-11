@@ -22,13 +22,13 @@ const ListItem = styled.li`
 async function fetcher(url) {
   const response = await fetch(url);
   if (!response.ok) {
-    // Fhlermeldung
+    // Fehlermeldung
     throw new Error("Error loading data from the API.");
   }
   return response.json();
 }
 
-export default function ListOfArtPieces() {
+export default function ListOfArtPieces({ artPiecesInfo, onToggleFavorite }) {
   /* Calling der API Fetch Funktion per SWR URL übergabe */
   const {
     data: artPieces = [],
@@ -46,17 +46,31 @@ export default function ListOfArtPieces() {
   return (
     <>
       <List>
-        {artPieces.map((artPiece) => (
-          <ListItem key={artPiece.slug}>
-            <ArtPieceCard
-              artPiece={artPiece}
-              imageWidth={imageWidth}
-              imageHeight={imageHeight}
-              href={`/gallery/${artPiece.slug}`}
-              showDetails={false}
-            />
-          </ListItem>
-        ))}
+        {artPieces.map((artPiece) => {
+          const info = artPiecesInfo.find(
+            (info) => info.slug === artPiece.slug
+          );
+          let isFavorite = false;
+          if (info) {
+            isFavorite = info.isFavorite;
+          }
+          return (
+            <ListItem key={artPiece.slug}>
+              <ArtPieceCard
+                artPiece={artPiece}
+                imageWidth={imageWidth}
+                imageHeight={imageHeight}
+                href={`/gallery/${artPiece.slug}`}
+                showDetails={false}
+              />
+              <FavoriteButton
+                slug={artPiece.slug}
+                isFavorite={isFavorite}
+                onToggleFavorite={onToggleFavorite}
+              />
+            </ListItem>
+          );
+        })}
       </List>
     </>
   );

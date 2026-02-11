@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export default function HomePage() {
+export default function HomePage({ artPiecesInfo, onToggleFavorite }) {
   const {
     data: artPieces = [],
     error,
@@ -28,6 +28,9 @@ export default function HomePage() {
         imageSource={spotlightPiece.imageSource}
         width={spotlightPiece.dimensions.width}
         height={spotlightPiece.dimensions.height}
+        slug={spotlightPiece.slug}
+        artPiecesInfo={artPiecesInfo}
+        onToggleFavorite={onToggleFavorite}
       />
     </div>
   );
