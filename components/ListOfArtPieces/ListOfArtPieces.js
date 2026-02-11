@@ -1,6 +1,6 @@
 // components/ListOfArtPieces/ListOfArtPieces.js
 
-import useSWR from "swr";
+// import useSWR from "swr";
 import styled from "styled-components";
 import ArtPieceCard from "../ArtPieceCard/ArtPieceCard";
 import FavoriteButton from "../FavoriteButton";
@@ -19,14 +19,14 @@ const ListItem = styled.li`
 `;
 
 /* API Fetch Funktion */
-async function fetcher(url) {
-  const response = await fetch(url);
-  if (!response.ok) {
-    // Fehlermeldung
-    throw new Error("Error loading data from the API.");
-  }
-  return response.json();
-}
+// async function fetcher(url) {
+//   const response = await fetch(url);
+//   if (!response.ok) {
+//     // Fehlermeldung
+//     throw new Error("Error loading data from the API.");
+//   }
+//   return response.json();
+// }
 
 export default function ListOfArtPieces({
   artPiecesInfo,
@@ -34,25 +34,25 @@ export default function ListOfArtPieces({
   pieces,
 }) {
   /* Calling der API Fetch Funktion per SWR URL übergabe */
-  const {
-    data: artPieces = [],
-    isLoading,
-    error,
-  } = useSWR("https://example-apis.vercel.app/api/art", fetcher);
+  //   const {
+  //     data: artPieces = [],
+  //     isLoading,
+  //     error,
+  //   } = useSWR("https://example-apis.vercel.app/api/art", fetcher);
 
-  if (isLoading) return <h1>Loading...</h1>;
-  if (error) return <h1>{error.message}</h1>;
+  //   if (isLoading) return <h1>Loading...</h1>;
+  //   if (error) return <h1>{error.message}</h1>;
 
   /* Bildgröße festlegen      */
   const imageWidth = 150;
   const imageHeight = 200;
 
-  const piecesToShow = pieces || artPieces;
+  //   const piecesToShow = pieces || artPieces;
 
   return (
     <>
       <List>
-        {piecesToShow.map((artPiece) => {
+        {pieces.map((artPiece) => {
           const info = artPiecesInfo.find(
             (info) => info.slug === artPiece.slug
           );
