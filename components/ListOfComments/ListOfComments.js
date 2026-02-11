@@ -8,13 +8,11 @@ const Comment = styled.p`
   font-weight: 700;
   padding: 0 5px;
 `;
-
 const Timestamp = styled.p`
   font-size: 0.9rem;
   line-height: 1.1;
   padding: 0 5px;
 `;
-
 const List = styled.ul`
   list-style: none;
   padding: 0;

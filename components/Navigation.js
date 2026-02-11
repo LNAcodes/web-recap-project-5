@@ -10,19 +10,16 @@ const Nav = styled.nav`
   bottom: 0px;
   z-index: 3;
 `;
-
 const List = styled.ul`
   display: flex;
   list-style: none;
   padding: 0;
   margin: 0;
 `;
-
 const ListItem = styled.li`
   flex: 0 0 33%;
   background-color: rgb(50, 50, 50);
 `;
-
 const StyledLink = styled(Link)`
   display: flex;
   flex-direction: column;
@@ -46,7 +43,6 @@ const Icon = styled(FontAwesomeIcon)`
   max-width: none;
   flex: 0 0 auto;
 `;
-
 const LinkText = styled.span`
   font-size: 12px;
 `;

@@ -14,16 +14,18 @@ const Card = styled.article`
   overflow: hidden;
   background: white;
   margin-top: 10px;
-  padding: 12px;
+  padding: 24px;
 `;
-
 const Title = styled.h2`
+  color: #333;
   font-size: 1rem;
   line-height: 1.2;
 `;
 
 export default function ArtPieceDetailPage({
   artPieces,
+  artPiecesInfo,
+  onToggleFavorite,
   handleAddComment,
   comments,
 }) {
@@ -41,6 +43,14 @@ export default function ArtPieceDetailPage({
   const imageWidth = 300;
   const imageHeight = 400;
 
+  const info = artPiecesInfo.find((info) => info.slug === slug);
+  const isFavorite = info ? info.isFavorite : false;
+
+  let hasComments = false;
+  if (comments.filter((comment) => comment.slug === slug).length != 0) {
+    hasComments = true;
+  }
+
   return (
     <>
       <MetaHead
@@ -52,9 +62,13 @@ export default function ArtPieceDetailPage({
           artPiece={artPiece}
           imageWidth={imageWidth}
           imageHeight={imageHeight}
+          showDetails={true}
+          slug={slug}
+          isFavorite={isFavorite}
+          onToggleFavorite={onToggleFavorite}
         />
         <Card>
-          <Title>Comments:</Title>
+          <Title>{hasComments ? "Comments:" : "No comments yet."}</Title>
           <ListOfComments slug={slug} comments={comments} />
         </Card>
         <Card>

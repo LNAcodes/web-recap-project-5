@@ -1,5 +1,11 @@
 import ListOfArtPieces from "@/components/ListOfArtPieces/ListOfArtPieces";
 import MetaHead from "@/components/MetaHead/MetaHead";
+import styled from "styled-components";
+
+/* Styling */
+const Message = styled.p`
+  color: #ccc;
+`;
 
 export default function FavoritesPage({
   artPieces,
@@ -27,8 +33,8 @@ export default function FavoritesPage({
         description="Your saved artworks."
       />
       <main>
-        <h1>My Favorites</h1>
-        {!hasFavorites && <p>There are no favorites yet.</p>}
+        <h1>{favoritedPieces.length > 0 ? "My Favorites" : "No Favorites"}</h1>
+        {!hasFavorites && <Message>There are no favorites yet.</Message>}
         <ListOfArtPieces
           pieces={favoritedPieces}
           artPiecesInfo={artPiecesInfo}

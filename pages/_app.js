@@ -25,7 +25,7 @@ export default function App({ Component, pageProps }) {
     error,
   } = useSWR("https://example-apis.vercel.app/api/art", fetcher);
 
-  // STATE (FÜR COMMENTS) MIT LOCAL STORAGE (key = comments, opions = defaultValue)
+  // STATE (FÜR COMMENTS) MIT LOCAL STORAGE
   const [comments, setComments] = useLocalStorageState("comments", {
     defaultValue: [],
   });

@@ -17,7 +17,6 @@ body {
     display: flex;
     flex-direction: column;
     background-color: #222222;
-    color: #ccc;
 }
 
 img,
@@ -46,21 +45,19 @@ main {
     flex: 1;
     max-width: 1100px;
     margin: 0 auto;
-    padding: 24px;
 }
 
 h1, h2 {
     margin-bottom: 20px;
 }
+h2 {
+    color: #ccc;
+    font-size: 18px;
+}
 h1 {
     font-family: Lucida, sans-serif;
     font-weight: 300;
     color: #ff0000;
-}
-
-/* muss noch entfernt/in die Card Componente ausgelagert werden */
-img.card__image {
-    object-fit: cover;
 }
 
 `;
