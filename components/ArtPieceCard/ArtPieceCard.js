@@ -5,24 +5,35 @@ import FavoriteButton from "../FavoriteButton";
 
 /* Styling */
 const Card = styled.article`
-  border: 1px solid #e5e5e5;
   border-radius: 12px;
   overflow: hidden;
-  background: white;
+  background: black;
   margin-top: 10px;
-  padding: 24px;
+  padding: 0 24px 24px 24px;
   &:hover {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   }
 `;
+
+const FavoriteBadge = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+`;
+
 const Title = styled.h2`
-  color: #222;
-  font-size: 1rem;
-  line-height: 1.2;
+  color: white;
+  font-size: 1.4rem;
+  line-height: 1.4;
 `;
+
 const SubTitle = styled.span`
-  color: #a5a5a5;
+  color: var(--text-color);
+  font-size: 1.2rem;
+  font-weight: 300;
 `;
+
 const Details = styled.ul`
   list-style: none;
   padding: 0;
@@ -32,30 +43,79 @@ const Details = styled.ul`
   font-size: 0.9rem;
   position: relative;
 `;
+
+const DetailItem = styled.li`
+  margin: 10px 0 0 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  padding-bottom: 8px;
+  background-image: radial-gradient(circle, #444 0.05rem, transparent);
+  background-size: 4px 1px;
+  background-repeat: repeat-x;
+  background-position: left bottom;
+  span {
+    font-weight: 700;
+  }
+`;
+
+const ImageWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 240px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 12px;
+`;
+
+const ColorSwatches = styled.ul`
+  list-style: none;
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+`;
+
+const ColorDot = styled.li`
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: ${(props) => props.$color};
+  border: 1px solid #464646;
+`;
+
 const StyledImage = styled(Image)`
   object-fit: cover;
 `;
 
 export default function ArtPieceCard({
   artPiece,
-  imageWidth,
-  imageHeight,
   href,
   showDetails = true,
   slug,
   isFavorite,
   onToggleFavorite,
 }) {
-  /* const image = (
-    <StyledImage
-      className="card__image"
-      src={artPiece.imageSource}
-      width={imageWidth}
-      height={imageHeight}
-      alt={`${artPiece.name} by ${artPiece.artist}`}
-      loading="lazy"
-    />
-  ); */
+  const image = (
+    <ImageWrapper>
+      <StyledImage
+        src={artPiece.imageSource}
+        alt={`${artPiece.name} by ${artPiece.artist}`}
+        fill
+        sizes="(max-width: 600px) 100vw, 600px"
+        loading="lazy"
+      />
+
+      <FavoriteBadge>
+        <FavoriteButton
+          slug={slug}
+          isFavorite={isFavorite}
+          onToggleFavorite={onToggleFavorite}
+        />
+      </FavoriteBadge>
+    </ImageWrapper>
+  );
+
   return (
     <Card>
       <Title>
@@ -63,38 +123,24 @@ export default function ArtPieceCard({
         <SubTitle>{artPiece.artist}</SubTitle>
       </Title>
 
-      {/* Zeige href-Link nur wenn 'href' vohanden/übergeben worden ist */}
-      {href ? (
-        <Link href={href}>
-          <StyledImage
-            className="card__image"
-            src={artPiece.imageSource}
-            width={imageWidth}
-            height={imageHeight}
-            alt={`${artPiece.name} by ${artPiece.artist}`}
-            loading="lazy"
-          />
-        </Link>
-      ) : (
-        <StyledImage
-          className="card__image"
-          src={artPiece.imageSource}
-          width={imageWidth}
-          height={imageHeight}
-          alt={`${artPiece.name} by ${artPiece.artist}`}
-          loading="lazy"
-        />
-      )}
-      <FavoriteButton
-        slug={slug}
-        isFavorite={isFavorite}
-        onToggleFavorite={onToggleFavorite}
-      />
+      {href ? <Link href={href}>{image}</Link> : image}
+
       {showDetails && (
         <Details>
-          <li>Year: {artPiece.year}</li>
-          <li>Genre: {artPiece.genre}</li>
-          <li>Colors: {artPiece.colors.join(", ")}</li>
+          <DetailItem>
+            <span>Year:</span> {artPiece.year}
+          </DetailItem>
+          <DetailItem>
+            <span>Genre:</span> {artPiece.genre}
+          </DetailItem>
+          <DetailItem>
+            <span>Colors:</span>
+            <ColorSwatches aria-label="Artwork colors">
+              {artPiece.colors.map((color) => (
+                <ColorDot key={color} $color={color} title={color} />
+              ))}
+            </ColorSwatches>
+          </DetailItem>
         </Details>
       )}
     </Card>

@@ -5,32 +5,42 @@ import styled from "styled-components";
 
 /* Styling */
 const Form = styled.form`
-  color: #333;
+  color: var(--text-color);
   display: flex;
   flex-direction: column;
 `;
 const Label = styled.label`
-  color: #333;
+  color: var(--text-color);
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.2;
   padding: 5px;
 `;
 const Hint = styled.p`
-  color: #333;
+  color: var(--text-color);
   font-size: 0.7rem;
   line-height: 1;
   padding: 0 5px;
   margin-bottom: 10px;
 `;
 const Input = styled.input`
-  color: #333;
+  color: var(--text-color);
   padding: 05px;
   width: 100%;
+  background: #333;
+  border: none;
+  border-radius: 8px;
+  padding: 5px;
+  margin: 0 0 5px 0;
 `;
 const Button = styled.button`
+  color: var(--text-color);
   min-width: 40px;
   min-height: 40px;
+  background: #333;
+  border: none;
+  border-radius: 8px;
+  padding: 5px;
 `;
 
 export default function CommentForm({ onAddComment, slug }) {

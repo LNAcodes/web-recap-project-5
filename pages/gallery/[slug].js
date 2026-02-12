@@ -9,15 +9,14 @@ import styled from "styled-components";
 
 /* Styling */
 const Card = styled.article`
-  border: 1px solid #e5e5e5;
   border-radius: 12px;
   overflow: hidden;
-  background: white;
+  background: black;
   margin-top: 10px;
   padding: 24px;
 `;
 const Title = styled.h2`
-  color: #333;
+  color: var(--text-color);
   font-size: 1rem;
   line-height: 1.2;
 `;

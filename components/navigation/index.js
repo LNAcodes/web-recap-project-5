@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBolt, faImages, faHeart } from "@fortawesome/free-solid-svg-icons";
 
 const Nav = styled.nav`
-  background-color: rgb(50, 50, 50);
+  background-color: var(--bg-color);
   height: 60px;
   position: sticky;
   bottom: 0px;
@@ -18,7 +18,7 @@ const List = styled.ul`
 `;
 const ListItem = styled.li`
   flex: 0 0 33%;
-  background-color: rgb(50, 50, 50);
+  background-color: var(--bg-color);
 `;
 const StyledLink = styled(Link)`
   display: flex;

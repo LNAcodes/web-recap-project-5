@@ -11,7 +11,7 @@ const StyledHeader = styled.header`
   display: flex;
   justify-content: center;
   padding: 16px 24px;
-  background: #222;
+  background-color: var(--bg-color);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 `;
 
