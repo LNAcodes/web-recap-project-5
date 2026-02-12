@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 /* Styling */
 const Message = styled.p`
-  color: var(--text-color);
+  color: #ccc;
 `;
 
 export default function FavoritesPage({
