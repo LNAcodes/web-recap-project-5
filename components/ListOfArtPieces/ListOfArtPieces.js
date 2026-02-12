@@ -42,20 +42,18 @@ export default function ListOfArtPieces({
           }
 
           return (
-            <>
-              <ListItem key={artPiece.slug}>
-                <ArtPieceCard
-                  artPiece={artPiece}
-                  imageWidth={imageWidth}
-                  imageHeight={imageHeight}
-                  href={`/gallery/${artPiece.slug}`}
-                  showDetails={false}
-                  slug={artPiece.slug}
-                  isFavorite={isFavorite}
-                  onToggleFavorite={onToggleFavorite}
-                />
-              </ListItem>
-            </>
+            <ListItem key={artPiece.slug}>
+              <ArtPieceCard
+                artPiece={artPiece}
+                imageWidth={imageWidth}
+                imageHeight={imageHeight}
+                href={`/gallery/${artPiece.slug}`}
+                showDetails={false}
+                slug={artPiece.slug}
+                isFavorite={isFavorite}
+                onToggleFavorite={onToggleFavorite}
+              />
+            </ListItem>
           );
         })}
       </List>
