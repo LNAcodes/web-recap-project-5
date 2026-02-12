@@ -44,7 +44,7 @@ select {
 main {
     flex: 1;
     max-width: 1100px;
-    margin: 0 auto;
+    margin: 0 30px;
 }
 
 h1, h2 {
