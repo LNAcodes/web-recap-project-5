@@ -46,16 +46,6 @@ export default function ArtPieceCard({
   isFavorite,
   onToggleFavorite,
 }) {
-  /* const image = (
-    <StyledImage
-      className="card__image"
-      src={artPiece.imageSource}
-      width={imageWidth}
-      height={imageHeight}
-      alt={`${artPiece.name} by ${artPiece.artist}`}
-      loading="lazy"
-    />
-  ); */
   return (
     <Card>
       <Title>
@@ -63,7 +53,6 @@ export default function ArtPieceCard({
         <SubTitle>{artPiece.artist}</SubTitle>
       </Title>
 
-      {/* Zeige href-Link nur wenn 'href' vohanden/übergeben worden ist */}
       {href ? (
         <Link href={href}>
           <StyledImage
