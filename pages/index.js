@@ -2,6 +2,7 @@
 import MetaHead from "@/components/MetaHead/MetaHead";
 import Spotlight from "@/components/Spotlight";
 import getRandomElement from "@/utils/getRandomElement";
+import { useMemo } from "react";
 
 export default function HomePage({
   artPieces,
@@ -10,10 +11,12 @@ export default function HomePage({
   artPiecesInfo,
   onToggleFavorite,
 }) {
+  const spotlightPiece = useMemo(() => {
+    if (!artPieces || artPieces.length === 0) return null;
+    return getRandomElement(artPieces);
+  }, [artPieces]);
   if (artPiecesError) return <p>Error loading artworks</p>;
-  if (artPiecesLoading || artPieces.length === 0) return <p>Loading...</p>;
-
-  const spotlightPiece = getRandomElement(artPieces);
+  if (artPiecesLoading || spotlightPiece.length === 0) return <p>Loading...</p>;
 
   if (!spotlightPiece) {
     return <p>Loading Spotlight... Please Wait...</p>;
