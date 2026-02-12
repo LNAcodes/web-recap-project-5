@@ -46,6 +46,16 @@ export default function ArtPieceCard({
   isFavorite,
   onToggleFavorite,
 }) {
+  /* const image = (
+    <StyledImage
+      className="card__image"
+      src={artPiece.imageSource}
+      width={imageWidth}
+      height={imageHeight}
+      alt={`${artPiece.name} by ${artPiece.artist}`}
+      loading="lazy"
+    />
+  ); */
   return (
     <Card>
       <Title>
@@ -67,6 +77,7 @@ export default function ArtPieceCard({
         </Link>
       ) : (
         <StyledImage
+          className="card__image"
           src={artPiece.imageSource}
           width={imageWidth}
           height={imageHeight}
