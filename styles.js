@@ -10,21 +10,13 @@ export default createGlobalStyle`
     box-sizing: border-box;
 }
 
-:root {
-    --bg-color: #151515;
-    --accent-color: #ff0000;
-    --text-color: #bbb;
-    --text-color-dark: #222;
-}
-
 body {
-    color: var(--text-color);
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: var(--bg-color);
+    background-color: #222222;
 }
 
 img,
@@ -65,7 +57,7 @@ h2 {
 h1 {
     font-family: Lucida, sans-serif;
     font-weight: 300;
-    color: var(--accent-color);
+    color: #ff0000;
 }
 
 `;

@@ -1,32 +1,23 @@
-# Art Gallery App (Next.js + React)
+# Recap Project 5: Art Gallery
 
-Interactive art gallery built as a group project during the **neue fische Web Development Bootcamp**.
+In this project, your team will create an interactive art gallery app.
 
-## What it does
+This is a group project, so please create **only one project per group** follow this [guide to setup your repository](./docs/github-respository-template.md).
 
-- Fetches artworks from a public API and displays them in a clean gallery UI
-- **Spotlight page:** shows a randomly selected artwork
-- **Gallery page:** lists all artworks with a detail view per piece
-- **Favorites page:** lets users save/unsave artworks via a heart toggle
-- **Detail page:** shows additional metadata and allows users to leave comments
+## Overview
 
-## Tech highlights
+In this project, we will create an art gallery app with four pages: **Spotlight**, **Gallery**, **Favorite**, and **Detail**. Users can like or unlike art pieces, and liked pieces will appear on the **Favorite** page.
 
-- **Next.js + React** (multi-page app with dynamic routes)
-- **Data fetching with SWR** (loading/error states)
-- **Local persistence with localStorage** (favorites + comments)
-- **Component-based UI** with reusable cards and navigation
+![wireframes](./docs/wireframes.excalidraw.png)
 
 ## API
 
-Artworks are loaded from:
+We will fetch all necessary information about the art pieces from an API specifically designed for this course. [Check out the API](https://example-apis.vercel.app/api/art).
 
 ```bash
 https://example-apis.vercel.app/api/art
 ```
 
-## Team project
+## Resources
 
-This repository is a fork/continuation of a group project. I use it to document my contribution, learnings, and potential improvements.
-
-![wireframes](./docs/wireframes.excalidraw.png)
+Download a [Favorite Icon](https://lucide.dev/icons/) and save it in an "assets" folder within your app's main directory.
